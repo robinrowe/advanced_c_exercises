@@ -150,7 +150,10 @@ void remove_task(LinkedList* list, int index)
     printf("Index out of bounds.\n");
     return;
   }
-
+  if(!previous)
+  { puts("previous null");
+    return;
+  }
   previous->next = current->next;
   free(current);
   list->size--;

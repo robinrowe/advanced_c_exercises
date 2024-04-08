@@ -76,7 +76,7 @@ int main()
   {
     int client_socket;
     Client client;
-
+    memset(&client,0,sizeof(client));
     // Accept incoming connection
     client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len);
     if (client_socket == -1)
@@ -93,7 +93,7 @@ int main()
       if (clients[i].socket == 0)
       {
         clients[i].socket = client_socket;
-        clients[i].address = client.address; // bug: uninitialized variable client
+        clients[i].address = client.address; // bug: uninitialized data client
         clients[i].addr_len = client.addr_len;
         clients[i].id = i + 1;
         c = i;

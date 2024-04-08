@@ -111,6 +111,9 @@ void load_packages()
 
     // Create a new package node and add it to the linked list
     Package* new_package = (Package*)malloc(sizeof(Package));
+   if(!new_package)
+   {  exit(1);
+   }
     strcpy(new_package->sender_address, sender_address);
     strcpy(new_package->delivery_address, delivery_address);
     new_package->sender_address[strcspn(new_package->sender_address, "\n")] = '\0';

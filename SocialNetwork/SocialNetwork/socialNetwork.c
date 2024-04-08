@@ -40,6 +40,9 @@ typedef struct
 Queue* queue_create()
 {
   Queue* queue = (Queue*)malloc(sizeof(Queue));
+  if(!queue)
+  {  return 0;
+  }
   queue->front = queue->rear = NULL;
   return queue;
 }
@@ -52,6 +55,9 @@ int queue_is_empty(Queue* queue)
 void queue_enqueue(Queue* queue, int user_index)
 {
   QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
+  if(!newNode)
+  {  exit(1);
+  }
   newNode->user_index = user_index;
   newNode->next = NULL;
 
@@ -109,11 +115,17 @@ void graph_add_connection(int src, int dest)
   }
 
   Node* new_node_src = (Node*)malloc(sizeof(Node));
+  if(!new_node_src)
+  {  exit(1);
+  }
   strcpy(new_node_src->name, users[dest].name);
   new_node_src->next = users[src].friends.head;
   users[src].friends.head = new_node_src;
 
   Node* new_node_dest = (Node*)malloc(sizeof(Node));
+  if(!new_node_dest)
+  {  exit(1);
+  }
   strcpy(new_node_dest->name, users[src].name);
   new_node_dest->next = users[dest].friends.head;
   users[dest].friends.head = new_node_dest;

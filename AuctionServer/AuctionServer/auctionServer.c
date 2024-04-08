@@ -24,7 +24,7 @@ SOCKET server_socket;
 int best_bid = 0;
 int winning_client = 0;
 
-VOID CALLBACK TimerCompletionRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
+VOID APIENTRY TimerCompletionRoutine(PVOID lpParam, DWORD TimerOrWaitFired, DWORD ignored);
 unsigned __stdcall client_handler(void* data);
 
 int main()
@@ -176,8 +176,16 @@ unsigned __stdcall client_handler(void* data)
   return 0;
 }
 
+/*
+VOID
+(APIENTRY *PTIMERAPCROUTINE)(
+    _In_opt_ LPVOID lpArgToCompletionRoutine,
+    _In_     DWORD dwTimerLowValue,
+    _In_     DWORD dwTimerHighValue
+    );
+*/
 // Callback function to finish the auction after 20 seconds of inactivity
-VOID CALLBACK TimerCompletionRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
+VOID APIENTRY TimerCompletionRoutine(LPVOID lpParam, DWORD TimerOrWaitFired, DWORD ignored)
 {
   printf("Auction finished. Winning bid: $%d, winner: client no. %d\n", best_bid, winning_client);
 
