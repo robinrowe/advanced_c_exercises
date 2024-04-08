@@ -93,7 +93,7 @@ int main()
       if (clients[i].socket == 0)
       {
         clients[i].socket = client_socket;
-        clients[i].address = client.address;
+        clients[i].address = client.address; // bug: uninitialized variable client
         clients[i].addr_len = client.addr_len;
         clients[i].id = i + 1;
         c = i;
@@ -173,6 +173,7 @@ void *client_handler(void *arg)
 
     pthread_mutex_unlock(&mutex);
   }
+  return 0;
 }
 
 

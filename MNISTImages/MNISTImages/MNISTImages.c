@@ -89,7 +89,7 @@ Image* getRandomImage(Image* head)
 int main()
 {
   FILE* file;
-  int pixels[IMAGE_SIZE];
+  char pixels[IMAGE_SIZE];
   Image* head = NULL;
   Image* tail = NULL;
 
@@ -157,7 +157,10 @@ int main()
     current = current->next;
     index++;
   }
-
+  if(!closestImage)
+  {  puts("closestImage failed");
+     return 2;
+  }
   // Output the label of the closest image
   printf("Closest image (distance=%f, index=%d)\n", minDistance, minIndex);
 

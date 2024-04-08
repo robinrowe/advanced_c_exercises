@@ -90,7 +90,7 @@ void *receive_handler(void *arg)
   while (1)
   {
     // Receive message from server
-    ssize_t bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+    ssize_t bytes_received = recv(client_socket, buffer, sizeof(buffer)-1, 0);
     if (bytes_received == -1)
     {
       perror("Receive failed");
@@ -120,4 +120,5 @@ void *receive_handler(void *arg)
 
   close(client_socket);
   pthread_exit(NULL);
+  return 0;
 }

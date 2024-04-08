@@ -4,8 +4,10 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
+#if 0
 #ifdef _MSC_VER
 #define strdup(p) _strdup(p)
+#endif
 #endif
 
 typedef struct TreeNode
@@ -16,7 +18,7 @@ typedef struct TreeNode
   struct TreeNode *right;
 } TreeNode;
 
-TreeNode *TreeNode_create(char *filename, char *location)
+TreeNode *TreeNode_create(const char *filename,const char *location)
 {
   TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));
   if (node == NULL)
@@ -30,7 +32,7 @@ TreeNode *TreeNode_create(char *filename, char *location)
   return node;
 }
 
-TreeNode *TreeNode_insert(TreeNode *root, char *filename, char *location)
+TreeNode *TreeNode_insert(TreeNode *root,const char *filename,const char *location)
 {
   // If the tree is empty, return a new node
   if (root == NULL)

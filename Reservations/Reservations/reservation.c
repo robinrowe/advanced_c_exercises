@@ -1,3 +1,4 @@
+#include <string.h>
 #include "reservation.h"
 
 void reservation_add_person(struct Reservation* r, struct Person p)
@@ -17,6 +18,8 @@ void reservation_set(struct Reservation* r,
   r->cost = cost;
   vector_init(&r->persons, 5);
 }
+
+void date_print(struct Date* d);
 
 void reservation_print(struct Reservation *resv)
 {

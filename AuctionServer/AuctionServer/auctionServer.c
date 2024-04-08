@@ -69,6 +69,10 @@ int main()
 
   // Create a waitable timer
   timer = CreateWaitableTimer(NULL, TRUE, NULL);
+  if(!timer)
+  {  puts("CreateWaitableTimer failed");
+     return 2;
+  }
   LARGE_INTEGER dueTime;
   dueTime.QuadPart = -200000000LL; // 20 seconds
   SetWaitableTimer(timer, &dueTime, 0, TimerCompletionRoutine, NULL, 0);

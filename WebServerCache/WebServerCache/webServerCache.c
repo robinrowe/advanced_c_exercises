@@ -84,6 +84,10 @@ int main()
 
   // Initialize cache
   cache = (LRUCache*)malloc(sizeof(LRUCache));
+  if(!cache)
+  {  puts("malloc failed");
+     return 2;
+  }
   cache->capacity = CACHE_SIZE;
   cache->size = 0;
   cache->head = NULL;
@@ -131,7 +135,7 @@ int main()
 void handleRequest(SOCKET clientSocket)
 {
   char request[MAX_REQUEST_SIZE];
-  int bytesReceived = recv(clientSocket, request, sizeof(request), 0);
+  int bytesReceived = recv(clientSocket, request, sizeof(request)-1, 0);
   if (bytesReceived <= 0)
   {
     perror("recv");
@@ -231,6 +235,9 @@ void putContent(char* url, char* content)
 Node* createNode(char* url, char* content)
 {
   Node* newNode = (Node*)malloc(sizeof(Node));
+  if(!newNode)
+  {  return 0;
+  }
   newNode->url = _strdup(url);
   newNode->content = _strdup(content);
   newNode->prev = NULL;

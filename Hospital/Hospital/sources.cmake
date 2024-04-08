@@ -1,0 +1,10 @@
+sources.cmake
+clinic.h
+measurement.h
+patient.h
+vector.h
+clinic.c
+hospital.c
+measurement.c
+patient.c
+vector.c
